@@ -1,7 +1,7 @@
 package org.megalodonte.components;
 
 
-import org.megalodonte.props.TextProps;
+import org.megalodonte.props.TextPropsV2;
 import org.megalodonte.reactivity.v2.ReadableState;
 
 public class TextV2 extends Component {
@@ -12,7 +12,7 @@ public class TextV2 extends Component {
         this.text = (javafx.scene.text.Text) this.node;
     }
 
-    public TextV2(String textContent, TextProps props){
+    public TextV2(String textContent, TextPropsV2 props){
         super(new javafx.scene.text.Text(textContent), props);
         this.text = (javafx.scene.text.Text) this.node;
     }
@@ -24,7 +24,7 @@ public class TextV2 extends Component {
         state.subscribe(text::setText);
     }
 
-    public TextV2(ReadableState<String> state, TextProps props) {
+    public TextV2(ReadableState<String> state, TextPropsV2 props) {
         super(new javafx.scene.text.Text(), props);
         this.text = (javafx.scene.text.Text) this.node;
 

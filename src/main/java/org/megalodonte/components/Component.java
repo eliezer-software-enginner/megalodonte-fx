@@ -17,7 +17,11 @@ public abstract class Component {
 
     protected Component(Node node, Props props) {
         this.node = node;
-        this.props = props;
+
+        if(props != null){
+            this.props = props;
+            this.props.apply(node);
+        }
     }
 
 }

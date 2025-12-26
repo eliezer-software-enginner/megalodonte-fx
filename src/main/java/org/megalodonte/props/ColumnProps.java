@@ -13,7 +13,7 @@ public class ColumnProps extends Props {
     }
 
     @Override
-    protected void apply(Node node) {
+    public void apply(Node node) {
         if (node instanceof VBox vBox) {
             if (minWidth >= 0) {
                 vBox.setMinWidth(minWidth);

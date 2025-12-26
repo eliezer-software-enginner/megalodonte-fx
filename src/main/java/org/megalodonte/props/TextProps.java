@@ -19,7 +19,7 @@ public class TextProps extends Props {
     }
 
     @Override
-    protected void apply(Node node) {
+    public void apply(Node node) {
         if(node instanceof Text t){
             var currentStyle = t.getStyle();
             var updatedStyle = currentStyle = Commons.UpdateEspecificStyle(currentStyle, Commons.FX_FontSize, String.valueOf(fontSize));
