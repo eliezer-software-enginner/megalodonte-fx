@@ -6,8 +6,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import org.megalodonte.components.Column;
-import org.megalodonte.components.Text;
-import org.megalodonte.reactivity.State;
+import org.megalodonte.components.TextV2;
+import org.megalodonte.reactivity.v2.ComputedState;
+import org.megalodonte.reactivity.v2.State;
 
 import java.time.Duration;
 
@@ -19,20 +20,42 @@ public class App extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Meu app");
 
-        State<String> text = new State<>("Olá mundo");
+        State<Integer> count = new State<>(1);
+
+        ComputedState<String> label =
+                ComputedState.of(
+                        () -> "Total: " + count.get(),
+                        count
+                );
+
+        var text = new TextV2(label);
 
         var column = new Column()
-                .child(new Text(text))
-                .child(new Text("Text 2"));
+                .child(text);
 
-        Thread.ofVirtual().start(()->{
+                Thread.ofVirtual().start(()->{
             try {
                 Thread.sleep(Duration.ofSeconds(2));
-                Platform.runLater(()-> text.set("Novo texto"));
+                Platform.runLater(()-> count.set(2));
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         });
+
+
+        //State<String> text = new State<>("Olá mundo");
+//        var column = new Column()
+//                .child(new Text(text))
+//                .child(new Text("Text 2"));
+
+//        Thread.ofVirtual().start(()->{
+//            try {
+//                Thread.sleep(Duration.ofSeconds(2));
+//                Platform.runLater(()-> text.set("Novo texto"));
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
+//        });
 
         ROOT.getChildren().add(column.getNode());
 

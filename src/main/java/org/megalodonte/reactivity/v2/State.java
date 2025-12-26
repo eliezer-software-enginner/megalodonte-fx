@@ -1,10 +1,10 @@
-package org.megalodonte.reactivity;
+package org.megalodonte.reactivity.v2;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class State<T> {
+public class State<T> implements ReadableState<T> {
 
     private T value;
     private final List<Consumer<T>> listeners = new ArrayList<>();
@@ -24,6 +24,6 @@ public class State<T> {
 
     public void subscribe(Consumer<T> listener) {
         listeners.add(listener);
-        listener.accept(value); // dispara valor inicial
+        listener.accept(value);
     }
 }

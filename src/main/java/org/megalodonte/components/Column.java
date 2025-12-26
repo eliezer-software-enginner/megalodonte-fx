@@ -6,12 +6,6 @@ import org.megalodonte.props.ColumnProps;
 public class Column extends Component {
     private final VBox vBox;
 
-    /*
-        var columnProps = new ColumnProps()
-        new Column(columnProps)
-        .child(new Text("ola mundo"))
-        .child(new Text("text 2"))
-     */
     public Column(){
         super(new VBox());
         this.vBox = (VBox) this.node;
